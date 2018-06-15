@@ -186,8 +186,9 @@ class ServerMsgDeal(object):
 				msgid = str(c.getmessagesid())
 				userid = str(c.getuserid())
 				ctime = str(c.getcommentstime())
-				username = c.getusername()
 				comments += comid+"!+-*"+cominfo+"!+-*"+msgid+"!+-*"+userid+"!+-*"+ctime+"!+-*"+username+"****&&&&"
+				username1 = c.getusername()
+				comments += comid+"!+-*"+cominfo+"!+-*"+msgid+"!+-*"+userid+"!+-*"+ctime+"!+-*"+username1+"****&&&&"
 
 			blogslist += msgid + '+-*#'+userid + '+-*#'+msginfo + '+-*#'+agreenum + '+-*#'+transnum + '+-*#'+time + '+-*#'+ username + '+-*#'+comments + '####&&&&'
 		return blogslist
