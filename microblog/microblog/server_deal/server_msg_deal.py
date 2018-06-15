@@ -178,6 +178,7 @@ class ServerMsgDeal(object):
 			transnum = str(msg.getmessagestranspondnum())
 			time = str(msg.getmessagestime())
 			username = msg.getusername()
+
 			commentlist = msg.getcommentlist()
 			comments = ''
 			for c in commentlist:
@@ -186,8 +187,8 @@ class ServerMsgDeal(object):
 				msgid = str(c.getmessagesid())
 				userid = str(c.getuserid())
 				ctime = str(c.getcommentstime())
-				username = c.getusername()
-				comments += comid+"!+-*"+cominfo+"!+-*"+msgid+"!+-*"+userid+"!+-*"+ctime+"!+-*"+username+"****&&&&"
+				username1 = c.getusername()
+				comments += comid+"!+-*"+cominfo+"!+-*"+msgid+"!+-*"+userid+"!+-*"+ctime+"!+-*"+username1+"****&&&&"
 
 			blogslist += msgid + '+-*#'+userid + '+-*#'+msginfo + '+-*#'+agreenum + '+-*#'+transnum + '+-*#'+time + '+-*#'+ username + '+-*#'+comments + '####&&&&'
 		return blogslist
@@ -425,7 +426,7 @@ class ServerMsgDeal(object):
 		for admin in adminlist:
 			adminid = str(admin.getadminid())
 			messagesid = str(admin.getmessagesid())
-			username = str(admin.getusername())
+			username0 = str(admin.getusername())
 			admintype = str(admin.getadmintype())
 			userid = str(admin.getuserid())
 			acceptuserid = str(admin.getacceptuserid())
@@ -448,10 +449,10 @@ class ServerMsgDeal(object):
 				msgid = str(c.getmessagesid())
 				userid = str(c.getuserid())
 				ctime = str(c.getcommentstime())
-				username = c.getusername()
-				comments += comid+"!+-*"+cominfo+"!+-*"+msgid+"!+-*"+userid+"!+-*"+ctime+"!+-*"+username+"****&&&&"
+				username1 = c.getusername()
+				comments += comid+"!+-*"+cominfo+"!+-*"+msgid+"!+-*"+userid+"!+-*"+ctime+"!+-*"+username1+"****&&&&"
 			msglist = msgid + '+-*#'+userid + '+-*#'+msginfo + '+-*#'+agreenum + '+-*#'+transnum + '+-*#'+time + '+-*#'+ username + '+-*#'+comments
 		
-			respadminlist += adminid + '**--+' + messagesid	+ '**--+' + username + '**--+' + admintype	+ '**--+' + userid + '**--+' + acceptuserid	+ '**--+' + adminstime + '**--+' + commentinfo + '**--+' + msglist + '####&&&&'
+			respadminlist += adminid + '**--+' + messagesid	+ '**--+' + username0 + '**--+' + admintype	+ '**--+' + userid + '**--+' + acceptuserid	+ '**--+' + adminstime + '**--+' + commentinfo + '**--+' + msglist + '####&&&&'
 
 		return respadminlist
