@@ -56,6 +56,7 @@ class Ui_me(object):
         font.setPointSize(11)
         self.change_info.setFont(font)
         self.change_info.setObjectName("change_info")
+        self.change_info.setStyleSheet("color: rgb(70, 70, 70); font-weight:normal;vertical-align:middle;")
         self.gender = QtWidgets.QLabel(self.userinfo)
         self.gender.setGeometry(QtCore.QRect(33, 65, 81, 21))
         font = QtGui.QFont()
@@ -87,6 +88,7 @@ class Ui_me(object):
         font.setPointSize(11)
         self.change_pwd.setFont(font)
         self.change_pwd.setObjectName("change_pwd")
+        self.change_pwd.setStyleSheet("color: rgb(70, 70, 70); font-weight:normal;vertical-align:middle;")
         self.stime_t = QtWidgets.QLabel(self.userinfo)
         self.stime_t.setGeometry(QtCore.QRect(130, 160, 171, 31))
         font = QtGui.QFont()
@@ -112,6 +114,7 @@ class Ui_me(object):
         self.blog.setAutoDefault(False)
         self.blog.setDefault(False)
         self.blog.setObjectName("blog")
+        self.blog.setStyleSheet("color: rgb(70, 70, 70); font-weight:normal;border-radius:5px;vertical-align:middle;")
         self.good = QtWidgets.QCommandLinkButton(self.history)
         self.good.setGeometry(QtCore.QRect(30, 100, 121, 41))
         font = QtGui.QFont()
@@ -122,6 +125,7 @@ class Ui_me(object):
         self.good.setAutoDefault(False)
         self.good.setDefault(False)
         self.good.setObjectName("good")
+        self.good.setStyleSheet("color: rgb(70, 70, 70); font-weight:normal;border-radius:5px;vertical-align:middle;")
         self.blog_count = QtWidgets.QLabel(self.history)
         self.blog_count.setGeometry(QtCore.QRect(170, 42, 61, 21))
         font = QtGui.QFont()
@@ -236,8 +240,12 @@ class Ui_me(object):
         self.gender_t.setText(gender)
         self.stime_t.setText(stime)
         self.introduction.setText(introduction)
-        self.blog_count.setText(blog)
-        self.good_count.setText(good)
+        if (not blog) or (not good):
+            self.blog_count.setText("0")
+            self.good_count.setText("0")
+        else:
+            self.blog_count.setText(blog)
+            self.good_count.setText(good)
 
 
 if __name__ == "__main__":

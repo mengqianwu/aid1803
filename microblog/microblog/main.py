@@ -31,6 +31,7 @@ from page.Ui_details import Ui_Detail
 from page.Ui_send_blog import Ui_Blog
 from page.Ui_remind import Ui_remind
 from page.Ui_search import Ui_Search
+from page.news_main import Ui_message1
 # 客户端接口模块
 from client_deal.client_msg_deal import ClientMsgDeal
 
@@ -59,6 +60,7 @@ class Main(object):
         self.sendBlog = Ui_Blog(self.client)
         self.remind = Ui_remind()
         self.search = Ui_Search(self.client)
+        self.message = Ui_message1(self.client)
 
     # 注册登录界面
     def LoginTip(self):
@@ -88,7 +90,7 @@ class Main(object):
     # 主页按钮监控
     def Home_btn(self):
         # 四个主按钮
-        # self.home.message.clicked.connect(self.message.click)
+        self.home.message.clicked.connect(self.home_to_msg)
         self.home.new_blog.clicked.connect(self.send_blog)
         self.home.search.clicked.connect(self.search_page)
         self.home.me_.clicked.connect(self.aboutMe)
@@ -113,10 +115,16 @@ class Main(object):
         self.home.relateBlog.clicked.connect(self.relate_blog)
         self.home.next_page.clicked.connect(self.nextPage)
 
+    def Message_btn(self):
+        self.message.home_page.clicked.connect(self.message_to_Home)
+        self.message.new_blog.clicked.connect(self.send_blog_msg)
+        self.message.search.clicked.connect(self.message_to_search)
+        self.message.me_.clicked.connect(self.message_to_me)
+
     # 搜索页面按钮
     def Search_btn(self):
         self.search.home_page.clicked.connect(self.search_to_Home)
-        # self.search.message.clicked.connect(self.message.click)
+        self.search.message.clicked.connect(self.search_to_message)
         self.search.new_blog.clicked.connect(self.send_blog)
         self.search.me_.clicked.connect(self.search_to_me)
         # 评论按钮
@@ -144,9 +152,9 @@ class Main(object):
         # 首页
         self.Me.home_page.clicked.connect(self.me_to_Home)
         # 消息页面
-        self.Me.message.clicked.connect(self.MeWindow.close)
+        self.Me.message.clicked.connect(self.me_to_message)
         # 发布微博
-        self.Me.new_blog.clicked.connect(self.send_blog)
+        self.Me.new_blog.clicked.connect(self.send_blog_me)
         # 搜索
         self.Me.search.clicked.connect(self.me_to_search)
         # 微博及点赞记录页面
@@ -426,6 +434,42 @@ class Main(object):
         else:
             self.remind.info.setText('这是您自己发布的微博哦!')
 
+
+    # 消息页面相关
+    # 主页前往消息页面
+    def home_to_msg(self):
+        self.MessageWindow = QtWidgets.QDialog()
+        self.message.setupUi(self.MessageWindow)
+        self.Message_btn()
+        self.HomeWindow.hide()
+        self.MessageWindow.show()
+
+    def message_to_Home(self):
+        self.MessageWindow.close()
+        self.HomeWindow.show()
+
+    def message_to_search(self):
+        self.SearchWindow = QtWidgets.QDialog()
+        self.search.setupUi(self.SearchWindow)
+        self.Search_btn()
+        self.search.get_hot()
+        self.showed = self.search.get_blog()
+        self.MessageWindow.close()
+        self.SearchWindow.show()
+
+    def message_to_me(self):
+        self.MeWindow = QtWidgets.QDialog()
+        self.Me.setupUi(self.MeWindow)
+        self.Me_btn()
+        self.Me.get_info(self.username, self.introduction, self.gender,
+                         self.brithday, self.stime, self.blog, self.good)
+        self.MessageWindow.close()
+        self.MeWindow.show()
+
+    def send_blog_msg(self):
+        self.MessageWindow.close()
+        self.send_blog()
+
     # 以下为发布微博页面相关
     # 发布微博页面
     def send_blog(self):
@@ -462,6 +506,22 @@ class Main(object):
         self.SearchWindow.hide()
         self.HomeWindow.show()
         self.blog_refresh()
+
+    def search_to_message(self):
+        self.MessageWindow = QtWidgets.QDialog()
+        self.message.setupUi(self.MessageWindow)
+        self.Message_btn()
+        self.SearchWindow.close()
+        self.MessageWindow.show()
+
+    def search_to_me(self):
+        self.MeWindow = QtWidgets.QDialog()
+        self.Me.setupUi(self.MeWindow)
+        self.Me_btn()
+        self.Me.get_info(self.username, self.introduction, self.gender,
+                         self.brithday, self.stime, self.blog, self.good)
+        self.SearchWindow.close()
+        self.MeWindow.show()
 
     # 搜索页面搜索
     def search_info(self):
@@ -655,6 +715,17 @@ class Main(object):
         self.showed = self.search.get_blog()
         self.MeWindow.close()
         self.SearchWindow.show()
+
+    def me_to_message(self):
+        self.MessageWindow = QtWidgets.QDialog()
+        self.message.setupUi(self.MessageWindow)
+        self.Message_btn()
+        self.MeWindow.close()
+        self.MessageWindow.show()
+
+    def send_blog_me(self):
+        self.MeWindow.close()
+        self.send_blog()
 
 
 if __name__ == '__main__':

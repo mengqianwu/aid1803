@@ -10,18 +10,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Ui_comment1 import *
 from Ui_praise1 import *
 
-import sys
-from client_msg_deal import ClientMsgDeal
 from admin import Admin
 from messagestable import Messages
 from commentstable import Comments
-
-
-client = ClientMsgDeal()
-username = 'wumeng'
-userid = 1
-
-# from Ui_me import *
+import imgs_msg_rc
 
 
 class Ui_message1(object):
@@ -61,7 +53,7 @@ class Ui_message1(object):
         self.home_page.setGeometry(QtCore.QRect(10, 540, 71, 41))
         self.home_page.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("imgs/white house.png"),
+        icon.addPixmap(QtGui.QPixmap(":/msg/imgs/white_house.png"),
                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.home_page.setIcon(icon)
         self.home_page.setIconSize(QtCore.QSize(30, 30))
@@ -74,7 +66,7 @@ class Ui_message1(object):
         self.message.setGeometry(QtCore.QRect(88, 545, 75, 31))
         self.message.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("imgs/black information.png"),
+        icon1.addPixmap(QtGui.QPixmap(":/msg/imgs/black_information.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
 
 
@@ -90,7 +82,7 @@ class Ui_message1(object):
         self.new_blog.setAutoFillBackground(False)
         self.new_blog.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("imgs/plus sign.jpg"),
+        icon2.addPixmap(QtGui.QPixmap(":/msg/imgs/plus_sign.jpg"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.new_blog.setIcon(icon2)
         self.new_blog.setIconSize(QtCore.QSize(50, 50))
@@ -100,7 +92,7 @@ class Ui_message1(object):
         self.search.setGeometry(QtCore.QRect(240, 545, 61, 31))
         self.search.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("imgs/white search.png"),
+        icon3.addPixmap(QtGui.QPixmap(":/msg/imgs/white_search.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.search.setIcon(icon3)
         self.search.setIconSize(QtCore.QSize(30, 30))
@@ -110,7 +102,7 @@ class Ui_message1(object):
         self.me_.setGeometry(QtCore.QRect(320, 545, 61, 31))
         self.me_.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("imgs/white.png"),
+        icon4.addPixmap(QtGui.QPixmap(":/msg/imgs/white.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.me_.setIcon(icon4)
         self.me_.setIconSize(QtCore.QSize(30, 30))
@@ -142,7 +134,7 @@ class Ui_message1(object):
         font.setWeight(75)
         self.toolButton_comment.setFont(font)
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("imgs/comments.png"),
+        icon5.addPixmap(QtGui.QPixmap(":/msg/imgs/comments.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_comment.setIcon(icon5)
         self.toolButton_comment.setIconSize(QtCore.QSize(30, 30))
@@ -160,7 +152,7 @@ class Ui_message1(object):
         font.setWeight(75)
         self.toolButton_praise.setFont(font)
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("imgs/good-filling.png"),
+        icon6.addPixmap(QtGui.QPixmap(":/msg/imgs/good-filling.png"),
                         QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_praise.setIcon(icon6)
         self.toolButton_praise.setIconSize(QtCore.QSize(30, 30))
@@ -173,19 +165,8 @@ class Ui_message1(object):
         self.textBrowser.setMaximumSize(QtCore.QSize(400, 291))
         self.textBrowser.setObjectName("textBrowser")
         self.textBrowser.setStyleSheet("font: 12pt \"Arial\";background-color:rgba(235,237,244,0.8);")
-        message1.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(message1)
-
-        self.home_page.clicked.connect(self.home_page_fun)
-        # 调消息页面绑定
-        self.message.clicked.connect(self.message_fun)
-        # 发微博页面的绑定
-        self.new_blog.clicked.connect(self.new_blog_fun)
-        self.search.clicked.connect(self.search_fun)
-        # self.search.clicked.connect(self.s)
-        # 调我的页面绑定
-        self.me_.clicked.connect(self.me_fun)
         # comment评论键链接评论页面
         self.toolButton_comment.clicked.connect(self.comment_function)
         # 绑定评论页面返回键
@@ -203,11 +184,7 @@ class Ui_message1(object):
         self.textBrowser.setText(l)
 
     # 调管理员消息
-    #def administrator_message(self):
-        
-
-        
-            
+    #def administrator_message(self):    
         #self.textBrowser.setText(l)
 
     def new_blog_fun(self):
