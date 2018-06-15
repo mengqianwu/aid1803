@@ -426,6 +426,7 @@ class ServerMsgDeal(object):
 		for admin in adminlist:
 			adminid = str(admin.getadminid())
 			messagesid = str(admin.getmessagesid())
+			username0 = str(admin.getusername())
 			admintype = str(admin.getadmintype())
 			userid = str(admin.getuserid())
 			acceptuserid = str(admin.getacceptuserid())
